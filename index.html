@@ -3,19 +3,184 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!--
+      INDEXIERUNGSSPERRE — nicht entfernen, solange die Seite Kaltakquise ist.
+
+      Selin weiss nichts von dieser Vorschau. Eine indexierte Seite mit ihrem
+      Namen, ihrer Adresse und ihren Bewertungen, die ihr nicht gehoert, waere
+      ein echtes Problem — markenrechtlich und persoenlich. Erst freigeben,
+      wenn ein Auftrag vorliegt. Dieselbe Sperre steht in public/robots.txt.
+    -->
     <meta name="robots" content="noindex, nofollow, noarchive" />
+
+    <!--
+      Sicherheitsregeln, soweit sie im Dokument selbst wirken.
+
+      `style-src` braucht 'unsafe-inline': React und die Bewegungsbibliothek
+      schreiben ihre Werte in das style-Attribut, das laesst sich ohne
+      Umschreiben der halben Anwendung nicht vermeiden. Skripte laufen
+      dagegen ausschliesslich aus eigener Quelle — der Weg, ueber den
+      eingeschleuster Code tatsaechlich laeuft, ist damit zu.
+
+      `frame-ancestors` und `form-action` werden in einem meta-Element vom
+      Browser ignoriert. Sie stehen hier als Vorlage: Beim Livegang gehoeren
+      alle diese Regeln als HTTP-Kopfzeilen auf den Server, zusammen mit
+      Strict-Transport-Security.
+    -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="
+        default-src 'self';
+        base-uri 'self';
+        object-src 'none';
+        frame-ancestors 'none';
+        form-action 'self';
+        img-src 'self' data:;
+        font-src 'self' https://fonts.bunny.net;
+        style-src 'self' 'unsafe-inline' https://fonts.bunny.net;
+        script-src 'self';
+        connect-src 'self';
+      "
+    />
+    <meta name="referrer" content="strict-origin-when-cross-origin" />
+    <meta name="color-scheme" content="light" />
+    <meta name="theme-color" content="#fbfaf8" />
+
     <title>SELIN AESTHETIC — Lash, Brow &amp; Skin in Augsburg</title>
     <meta
       name="description"
-      content="Kosmetikstudio in der Augsburger Innenstadt. Wimpernverlängerung, Korean Lashlift, Browlamination und Aquafacial. 5,0 Sterne bei 62 Bewertungen."
+      content="Kosmetikstudio am Leonhardsberg in Augsburg: Wimpernverlängerung, Korean Lashlift, Browlamination und Aquafacial — dazu die zertifizierte Ausbildung zur Lash & Brow Artist. 5,0 Sterne bei 62 Bewertungen."
     />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="de_DE" />
+    <meta property="og:site_name" content="SELIN AESTHETIC" />
+    <meta property="og:title" content="SELIN AESTHETIC — Lash, Brow &amp; Skin in Augsburg" />
+    <meta
+      property="og:description"
+      content="Wimpern, Brauen und Haut am Leonhardsberg — und die zertifizierte Ausbildung dazu. 5,0 Sterne bei 62 Bewertungen."
+    />
+    <meta property="og:image" content="./bilder/portrait-selin-gross.jpg" />
+    <meta property="og:image:alt" content="Selin Dugonjić in ihrem Studio in Augsburg" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+
     <link rel="preconnect" href="https://fonts.bunny.net" crossorigin />
     <link
       rel="stylesheet"
       href="https://fonts.bunny.net/css?family=fraunces:400,500|dm-sans:400,500&display=swap"
     />
-    <script type="module" crossorigin src="./assets/index-CbNX0Hq8.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/index-CyYbFiNF.css">
+
+    <!--
+      Das Portraet ist das groesste Element im ersten Bildschirm und damit
+      der LCP. Ohne Vorabladung wird es erst entdeckt, wenn React gelaufen
+      ist — das kostet einen ganzen Rundlauf.
+    -->
+    <link
+      rel="preload"
+      as="image"
+      href="./bilder/portrait-selin-gross.jpg"
+      fetchpriority="high"
+    />
+
+    <!--
+      Strukturierte Daten fuer die Suche. Alle Angaben sind belegt: Adresse
+      und Oeffnungszeiten aus dem Beautinda-Profil, die Bewertung aus
+      denselben 62 oeffentlichen Bewertungen, die auch auf der Seite stehen.
+
+      Telefon und E-Mail fehlen bewusst statt erfunden zu sein — beides ist
+      nicht oeffentlich bekannt. Vor dem Livegang ergaenzen, dann greift auch
+      der Eintrag in der lokalen Suche.
+    -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BeautySalon",
+        "name": "SELIN AESTHETIC",
+        "description": "Kosmetikstudio für Wimpern, Brauen und Haut in Augsburg, mit zertifizierter Ausbildung zur Lash & Brow Artist.",
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "Leonhardsberg 18",
+          "postalCode": "86150",
+          "addressLocality": "Augsburg",
+          "addressRegion": "Bayern",
+          "addressCountry": "DE"
+        },
+        "areaServed": "Augsburg",
+        "priceRange": "€€",
+        "currenciesAccepted": "EUR",
+        "paymentAccepted": "Bar, Karte, Online",
+        "sameAs": [
+          "https://www.instagram.com/selinaestheticc",
+          "https://www.tiktok.com/@selinaestheticc"
+        ],
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Monday",
+            "opens": "12:00",
+            "closes": "17:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Wednesday",
+            "opens": "10:00",
+            "closes": "15:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Thursday",
+            "opens": "10:00",
+            "closes": "16:30"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Friday",
+            "opens": "10:00",
+            "closes": "15:00"
+          }
+        ],
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "5.0",
+          "reviewCount": "62",
+          "bestRating": "5"
+        },
+        "makesOffer": [
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Korean Lashlift" },
+            "price": "65",
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Wimpernverlängerung 1:1 Technik" },
+            "price": "75",
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Browlamination" },
+            "price": "65",
+            "priceCurrency": "EUR"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": { "@type": "Service", "name": "Aquafacial" },
+            "price": "99",
+            "priceCurrency": "EUR"
+          }
+        ]
+      }
+    </script>
+    <script type="module" crossorigin src="./assets/index-BaUCYJDw.js"></script>
+    <link rel="modulepreload" crossorigin href="./assets/jsx-runtime-Cltr0gcK.js">
+    <link rel="modulepreload" crossorigin href="./assets/react-np2tpb4-.js">
+    <link rel="modulepreload" crossorigin href="./assets/use-transform-C_5TKoRz.js">
+    <link rel="stylesheet" crossorigin href="./assets/index-BE-9mpEr.css">
   </head>
   <body>
     <div id="root"></div>
