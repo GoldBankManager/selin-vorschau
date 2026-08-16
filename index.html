@@ -2,7 +2,10 @@
 <html lang="de">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- viewport-fit=cover: Im Startbildschirm-Modus laeuft die Seite unter
+         die Statusleiste und die Gestenleiste des iPhones. Erst damit
+         greifen die env(safe-area-inset-*)-Abstaende im Stylesheet. -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
 
     <!--
       INDEXIERUNGSSPERRE — nicht entfernen, solange die Seite Kaltakquise ist.
@@ -66,6 +69,21 @@
     <meta name="twitter:card" content="summary_large_image" />
 
     <link rel="icon" href="./favicon.svg" type="image/svg+xml" />
+
+    <!--
+      Web-App fuer den Startbildschirm.
+
+      Auf dem iPhone reicht das Manifest allein nicht: Safari liest bis heute
+      seine eigenen apple-*-Angaben. „Zum Home-Bildschirm" erzeugt damit ein
+      Symbol, das ohne Browserleiste startet — die Seite verhaelt sich dann
+      wie eine installierte App.
+    -->
+    <link rel="manifest" href="./manifest.webmanifest" />
+    <link rel="apple-touch-icon" href="./apple-touch-icon.png" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Selin" />
 
     <link rel="preconnect" href="https://fonts.bunny.net" crossorigin />
     <link
@@ -176,11 +194,11 @@
         ]
       }
     </script>
-    <script type="module" crossorigin src="./assets/index-BZleibC1.js"></script>
+    <script type="module" crossorigin src="./assets/index-DXpgy8Dy.js"></script>
     <link rel="modulepreload" crossorigin href="./assets/jsx-runtime-Cltr0gcK.js">
     <link rel="modulepreload" crossorigin href="./assets/react-np2tpb4-.js">
     <link rel="modulepreload" crossorigin href="./assets/use-transform-C_5TKoRz.js">
-    <link rel="stylesheet" crossorigin href="./assets/index-BE-9mpEr.css">
+    <link rel="stylesheet" crossorigin href="./assets/index-Dl98a9NO.css">
   </head>
   <body>
     <div id="root"></div>

@@ -1,0 +1,46 @@
+{
+  "name": "SELIN AESTHETIC — Lash, Brow & Skin",
+  "short_name": "Selin",
+  "description": "Termine, Punktestand und Prämien beim Kosmetikstudio SELIN AESTHETIC in Augsburg.",
+  "lang": "de",
+  "dir": "ltr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#fbfaf8",
+  "theme_color": "#fbfaf8",
+  "categories": ["lifestyle", "health", "beauty"],
+  "icons": [
+    {
+      "src": "./symbol-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./symbol-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "./symbol-512-maskierbar.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Termin buchen",
+      "short_name": "Termin",
+      "url": "./#/termin"
+    },
+    {
+      "name": "Mein Punktestand",
+      "short_name": "Punkte",
+      "url": "./#/konto/punkte"
+    }
+  ]
+}
